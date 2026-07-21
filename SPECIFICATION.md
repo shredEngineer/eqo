@@ -449,7 +449,7 @@ Signatures are named co-occurrence patterns over P leaves, K facets, and M edges
 | S-ANT | Field/inertial propulsion | MEC-KIN-01/07 ∧ `K-VAC` recorded | EmDrive: Shawyer, Eagleworks 2016, TU Dresden null 2021; Woodward MEGA; Dean Drive |
 | S-GYR | Gyroscopic | MEC-KIN-04 ∨ GRA-GEW-04 ∨ GRA-INR-02 | Laithwaite lecture 1974 (resolved, T4); Hayasaka–Takeuchi + Faller null; DePalma |
 | S-OFN | Open | Observation without edge to `status: established` (T0) | *derived* — the operational anomaly definition (Principle 3) |
-| S-DEK | Orthodox-covered | T ≥ 3 | *derived* — ⊕ radiometer, Meissner demos, lifters with EHD documentation |
+| S-DEK | Orthodox-covered | T4 | *derived* — ⊕ radiometer, Meissner demos, lifters with EHD documentation |
 
 ---
 
@@ -474,13 +474,15 @@ Observations of the same Ε cell are **epistemically equivalent by construction*
 
 ## §Q.4 Epistemotypes (Named Reference Regions)
 
+**Covered means claimed, not merely discussed.** T3 records that an established mechanism is *on record as a candidate*; T4 records that a source *asserts* it. Only the latter is an orthodox account of the observation, so `EP-5` and `S-DEK` are drawn at T4. A T3 observation still has an open question attached to it, whatever the candidate explanation is.
+
 | Type | Region (informal) | Prototypes |
 |------|-------------------|------------|
 | EP-1 *Solitary* | D ≤ 3, R ≤ 2, C0, P ≤ 1, T0 | Hutchison; Kapanadze; Steorn |
 | EP-2 *Demonstrative* | public demo, no data: D 2–3, C 0–1, P2 | Testatika; Papp 1968 |
 | EP-3 *Lab-contested* | D ≥ 5, R 3–4, C ≥ 2 | Fleischmann–Pons; Podkletnov; Hayasaka–Takeuchi; EmDrive; Benveniste |
 | EP-4 *Historical-anecdotal* | D ≤ 1, P ≤ 2 | Bessler; Keely; Moray; Leedskalnin |
-| EP-5 *Orthodox-covered* | T ≥ 3 | Radiometer today; Meissner; EHD lifters |
+| EP-5 *Orthodox-covered* | T4 | Radiometer today; Meissner; EHD lifters |
 | EP-0 *Unquantized* | ≥ 3 axes `x` | new intake before assessment |
 
 ## §Q.5 Worked Example (Core Corpus, Quantized)
