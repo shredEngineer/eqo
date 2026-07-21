@@ -1,0 +1,51 @@
+name: Standard checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Schemas are valid JSON Schema documents
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, sys
+          ok = True
+          for f in sorted(pathlib.Path("schema").glob("*.json")):
+              d = json.loads(f.read_text())          # syntax
+              if "$schema" not in d:
+                  print(f"{f}: missing $schema", file=sys.stderr); ok = False
+              print(f"{f.name}: ok ({len(json.dumps(d))} bytes)")
+          sys.exit(0 if ok else 1)
+          PY
+
+      - name: Every shipped file is listed in the manifest
+        run: |
+          python3 - <<'PY'
+          import hashlib, pathlib, re, sys
+          man = pathlib.Path("MANIFEST.md").read_text()
+          listed = dict(re.findall(r'\| `([^`]+)` \| `([0-9a-f]{64})` \|', man))
+          shipped = sorted(p for p in pathlib.Path(".").rglob("*")
+                           if p.is_file() and p.suffix in {".md", ".json"}
+                           and ".git" not in p.parts and p.name != "MANIFEST.md")
+          bad = []
+          for p in shipped:
+              k = str(p)
+              h = hashlib.sha256(p.read_bytes()).hexdigest()
+              if k not in listed:  bad.append(f"not in manifest: {k}")
+              elif listed[k] != h: bad.append(f"checksum stale: {k}")
+          for m in listed:
+              if not pathlib.Path(m).exists(): bad.append(f"manifest lists a missing file: {m}")
+          print(f"{len(shipped)} shipped files, {len(listed)} listed")
+          for b in bad: print(b, file=sys.stderr)
+          sys.exit(1 if bad else 0)
+          PY

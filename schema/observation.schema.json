@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eqo:1/observation.schema.json",
+  "title": "EQO/1 Observation Record",
+  "description": "Validation schema for EQO/1 v1.0.0 observation/instance records (conformance classes CL-1..CL-3). English-edition wire tokens are canonical.",
+  "type": "object",
+  "required": [
+    "id",
+    "effect_types"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "label": {
+      "type": "string"
+    },
+    "principals": {
+      "type": "string"
+    },
+    "years": {
+      "type": "string"
+    },
+    "eqo_version": {
+      "type": "string",
+      "pattern": "^1\\.[01]\\.\\d+(-draft)?$"
+    },
+    "entity": {
+      "type": "string"
+    },
+    "effect_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^(P-[A-Z]{3}-[A-Z]{3}-[0-9]{2}|X-[A-Za-z0-9_-]+)$"
+      }
+    },
+    "mechanisms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "role"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^(M-(ART-)?[A-Z]{3}|X-[A-Za-z0-9_-]+)$"
+          },
+          "role": {
+            "enum": [
+              "claimed",
+              "discussed",
+              "excluded_per_source"
+            ]
+          },
+          "namespace": {
+            "type": "string",
+            "description": "Required prose declaration when ref uses the X- private prefix (§5)."
+          }
+        },
+        "if": {
+          "properties": {
+            "ref": {
+              "pattern": "^X-"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "ref",
+            "role",
+            "namespace"
+          ]
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "inp": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "hv_dc",
+              "hv_ac",
+              "lf_ac",
+              "rf",
+              "transient",
+              "magnetostatic",
+              "electrochemical",
+              "mechanical",
+              "acoustic",
+              "optical",
+              "thermal",
+              "chemical",
+              "passive",
+              "x"
+            ]
+          }
+        },
+        "med": {
+          "enum": [
+            "air",
+            "inert_gas",
+            "vacuum",
+            "water_electrolyte",
+            "oil_dielectric",
+            "solid",
+            "plasma",
+            "cryo",
+            "x"
+          ]
+        },
+        "vac": {
+          "enum": [
+            "x",
+            "persists",
+            "vanishes",
+            "intensifies",
+            "partial_only"
+          ]
+        },
+        "scl": {
+          "enum": [
+            "micro",
+            "lab",
+            "macro",
+            "plant",
+            "x"
+          ]
+        },
+        "per": {
+          "enum": [
+            "transient",
+            "decaying",
+            "persistent",
+            "permanent",
+            "x"
+          ]
+        },
+        "mod": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "temperature",
+              "orientation",
+              "astronomical",
+              "time_of_day",
+              "humidity",
+              "geographic",
+              "none_documented"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "epistemics": {
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "object",
+          "properties": {
+            "sources": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "controls": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "calibration",
+                  "control_run",
+                  "second_instrument",
+                  "environmental_exclusion",
+                  "blinded",
+                  "full_balance"
+                ]
+              }
+            }
+          }
+        },
+        "axes": {
+          "type": "string",
+          "pattern": "^E1:D([0-7]|x)R([0-5]|x)C([0-5]|x)P([0-4]|x)T([0-4]|x)Q([0-3]|x)$"
+        },
+        "t_computed_at": {
+          "type": "string"
+        }
+      }
+    },
+    "e_signature": {
+      "type": "string",
+      "pattern": "^E1:D([0-7]|x)R([0-5]|x)C([0-5]|x)P([0-4]|x)T([0-4]|x)Q([0-3]|x)$"
+    },
+    "epistemotype": {
+      "enum": [
+        "EP-0",
+        "EP-1",
+        "EP-2",
+        "EP-3",
+        "EP-4",
+        "EP-5"
+      ]
+    },
+    "record_kind": {
+      "enum": [
+        "observation",
+        "demonstration_claim",
+        "design_description",
+        "analysis"
+      ],
+      "default": "observation"
+    },
+    "compilation_confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "description": "Compiler recall reliability (Addendum A.1) — distinct from the E axes, which encode the world's documentation of the case."
+    },
+    "signatures": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S-[A-Z]{3}$"
+      }
+    },
+    "patent_flag": {
+      "type": "boolean"
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "ref"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "replicates",
+              "contradicts",
+              "confirms_per_source"
+            ]
+          },
+          "ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "note": {
+      "type": "string"
+    },
+    "refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eqo:1/corpus.schema.json",
+  "title": "EQO/1 Corpus Release File",
+  "type": "object",
+  "properties": {
+    "eqo_corpus_release": {
+      "type": "string"
+    },
+    "targets_eqo_version": {
+      "type": "string"
+    },
+    "instances": {
+      "type": "array",
+      "items": {
+        "$ref": "eqo:1/observation.schema.json"
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "known_as",
+          "recall",
+          "verify"
+        ],
+        "properties": {
+          "known_as": {
+            "type": "string"
+          },
+          "recall": {
+            "type": "string"
+          },
+          "verify": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "doctrines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "principals",
+          "summary",
+          "compilation_confidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^doc:[a-z0-9-]+$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "principals": {
+            "type": "string"
+          },
+          "years": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "linked_instances": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "compilation_confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "narratives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "emergence",
+          "narrative_provenance",
+          "factual_kernel",
+          "lore_layer",
+          "compilation_confidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^nar:[a-z0-9-]+$"
+          },
+          "label": {
+            "type": "string"
+          },
+          "emergence": {
+            "type": "string"
+          },
+          "narrative_provenance": {
+            "type": "string"
+          },
+          "factual_kernel": {
+            "type": "string"
+          },
+          "lore_layer": {
+            "type": "string"
+          },
+          "linked_instances": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "compilation_confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
