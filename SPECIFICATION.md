@@ -418,7 +418,11 @@ Six ordered axes. Raw fields (`sources[]`, `controls[]`, M edges) **MUST** be re
 
 **E-P Provenance grade** — `P0` anonymous/unclear · `P1` claimant's own documentation · `P2` account by affiliated third parties/media · `P3` independent documentation · `P4` adversarial/skeptical examination documented. Multiple sources: maximum per observation; third-party examinations are usually their own linked observations.
 
-**E-T Theory-embedding grade** (derived from M edges; `excluded_per_source` does not count) — `T0` no M edge (open) · `T1` heterodox/historical edges only · `T2` fringe edge · `T3` established edge, role `discussed` · `T4` established edge, role `claimed`. T is **time-indexed**: status revisions in M change T; implementations **MUST** carry `t_computed_at`. *(Paradigm: Crookes radiometer — 1874 T0, after Reynolds/Maxwell T4.)*
+**E-T Theory-embedding grade** (derived from M edges; `excluded_per_source` does not count) — `T0` no M edge (open) · `T1` heterodox/historical edges only · `T2` fringe edge · `T3` established edge, role `discussed` · `T4` established edge, role `claimed`.
+
+**Artifact classes are established mechanisms for this purpose.** `M-ART-*` nodes carry status `established` in Registry M, so an artifact edge derives T exactly as any other established edge does. A documented conventional account of a report — camera artifact, power-measurement error, suggestion — *is* an explanation, and a record carrying one is no longer open. Implementations that exempt artifact classes silently keep debunked reports classified as anomalies.
+
+**Orthodox anchors and null results.** A record whose observation *is* a null result or an orthodox demonstration has no anomalous phenomenon to explain and therefore no mechanism edge to derive from. Such a record carries `T4` by convention; deriving `T0` from the absent edge would classify the most securely established experiments as open anomalies. Mark these with ⊕ and state the convention in the record. T is **time-indexed**: status revisions in M change T; implementations **MUST** carry `t_computed_at`. *(Paradigm: Crookes radiometer — 1874 T0, after Reynolds/Maxwell T4.)*
 
 **E-Q Quantification grade** — `Q0` qualitative · `Q1` semi-quantitative · `Q2` quantitative · `Q3` quantitative with uncertainty.
 
@@ -478,7 +482,7 @@ Observations of the same Ε cell are **epistemically equivalent by construction*
 
 | Type | Region (informal) | Prototypes |
 |------|-------------------|------------|
-| EP-1 *Solitary* | D ≤ 3, R ≤ 2, C0, P ≤ 1, T0 | Hutchison; Kapanadze; Steorn |
+| EP-1 *Solitary* | D ≤ 3, R ≤ 2, C0, P ≤ 1 | Hutchison; Kapanadze; Steorn |
 | EP-2 *Demonstrative* | public demo, no data: D 2–3, C 0–1, P2 | Testatika; Papp 1968 |
 | EP-3 *Lab-contested* | D ≥ 5, R 3–4, C ≥ 2 | Fleischmann–Pons; Podkletnov; Hayasaka–Takeuchi; EmDrive; Benveniste |
 | EP-4 *Historical-anecdotal* | D ≤ 1, P ≤ 2 | Bessler; Keely; Moray; Leedskalnin |
@@ -489,7 +493,7 @@ Observations of the same Ε cell are **epistemically equivalent by construction*
 
 | Observation | E-signature | Macro-cell (D,R,C,P,T,Q) | Type |
 |---|---|---|---|
-| Hutchison corpus (primary) | `E1:D3R2C0P1T0Q0` | mid·mid·low·low·low·low | EP-1 |
+| Hutchison corpus (primary) | `E1:D3R2C0P1T3Q0` | mid·mid·low·low·mid·low | EP-1 |
 | Steorn Orbo 2007 | `E1:D3R1C0P1T0Q0` | mid·low·low·low·low·low | EP-1 |
 | Fleischmann–Pons 1989 (Utah) | `E1:D7R3C2P1T2Q3` | high·mid·mid·low·mid·high | EP-3 |
 | Caltech/MIT rechecks 1989 | `E1:D7R3C3P4T3Q3` — `contradicts` → F-P | high·mid·high·high·high·high | EP-3 |
@@ -498,6 +502,8 @@ Observations of the same Ε cell are **epistemically equivalent by construction*
 | TU Dresden null 2021 | `E1:D7R3C4P4T4Q3` — `contradicts` → EmDrive | high·mid·high·high·high·high | EP-3/EP-5 |
 | Benveniste 1988 | `E1:D7R3C2P1T0Q3` | high·mid·mid·low·low·high | EP-3 |
 | Crookes radiometer 1874 → today | `E1:D7R5C3P4T4Q3` | high·high·high·high·high·high | EP-5 |
+
+Note that Hutchison sits at T3 rather than T0: artifact classes are established mechanisms, so the camera and suspension accounts on record embed the report in theory even though nothing about the claimed phenomenon is settled. Solitary describes the evidence, not the absence of an explanation.
 
 Readable at a glance: Hutchison and Steorn cluster in the same Ε region despite entirely different phenomenology (Φ); F-P, Podkletnov, and the EmDrive form the lab-contested cluster; the radiometer demonstrates **temporal migration** through the lattice (T0 → T4). This separation of Φ and Ε is the epistemic payoff of quantization: one can ask *"which phenomena share the same evidential situation?"* and *"which evidential situations share the same phenomenon?"* — orthogonally.
 

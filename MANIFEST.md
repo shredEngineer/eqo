@@ -18,4 +18,4 @@ CI verifies on every push that the schemas parse and that this manifest lists ev
 | `README.md` | `7e7e31c76e49fc187f35ed9c3e0d1139802ad331c94cf6917650a569b1fa87a2` |
 | `schema/corpus.schema.json` | `dd453230c09b389f27b1a0c6063ad1e5f5f5b0b832417b6fe3c4eb22e1e1af82` |
 | `schema/observation.schema.json` | `c026b1efe8e0d1aa6a67f778e7a8b3ad9524c59f6c405782304fd8f901a23f7c` |
-| `SPECIFICATION.md` | `926cf7ce4276555d07a421caf147cce0b7da60402b189781531a0f2ec88728e3` |
+| `SPECIFICATION.md` | `4fc8d3eca337461ceda7036b5164db39c96d182dc85cde76a37235a078f0bdce` |
