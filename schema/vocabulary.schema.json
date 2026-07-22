@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "eqo:1/vocabulary.schema.json",
   "title": "EQO/1 Vocabulary Export",
-  "description": "Validation schema for vocabulary.json — the machine-readable export of the standard's registries and enumerations (Addendum C). Consumers read this artifact instead of parsing the specification prose.",
+  "description": "Validation schema for vocabulary.json — the machine-readable export of the standard's registries and enumerations (SPECIFICATION §8.6). Consumers read this artifact instead of parsing the specification prose.",
   "type": "object",
   "required": ["eqo_version", "canonical_edition", "spec_anchors", "phenomena", "mechanisms",
                "edge_roles", "relation_types", "context_facets", "axes", "unknown_grade",

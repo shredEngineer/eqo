@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "eqo:1/observation.schema.json",
   "title": "EQO/1 Observation Record",
-  "description": "Validation schema for EQO/1 v1.0.0 observation/instance records (conformance classes CL-1..CL-3). English-edition wire tokens are canonical.",
+  "description": "Validation schema for EQO/1 observation/instance records (conformance classes CL-1..CL-3, v1.4.0). English-edition wire tokens are canonical.",
   "type": "object",
   "required": [
     "id",
@@ -25,7 +25,7 @@
     "eqo_version": {
       "type": "string",
       "pattern": "^1\\.[0-9]+\\.[0-9]+$",
-      "description": "May be declared once at corpus-file level and inherited by every record (Addendum C.3); a record-level value overrides the file-level one."
+      "description": "May be declared once at corpus-file level and inherited by every record (SPECIFICATION §5); a record-level value overrides the file-level one."
     },
     "entity": {
       "type": "string"
@@ -225,7 +225,7 @@
         "medium",
         "low"
       ],
-      "description": "Compiler recall reliability (Addendum A.1) — distinct from the E axes, which encode the world's documentation of the case."
+      "description": "Compiler recall reliability (SPECIFICATION §8.2) — distinct from the E axes, which encode the world's documentation of the case."
     },
     "signatures": {
       "type": "array",
@@ -255,6 +255,29 @@
           },
           "ref": {
             "type": "string"
+          }
+        }
+      }
+    },
+    "retractions": {
+      "type": "array",
+      "description": "Retractions issued by the publication channel (SPECIFICATION Part VIII, §8.4). Each entry cites the retraction notice, which SHOULD also appear in refs; stated grounds go verbatim-faithful into note.",
+      "items": {
+        "type": "object",
+        "required": [
+          "date",
+          "ref"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "description": "Date of the retraction notice (ISO 8601)."
+          },
+          "ref": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Citation of the retraction notice."
           }
         }
       }

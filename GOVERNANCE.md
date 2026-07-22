@@ -13,6 +13,7 @@ How the standard grows, and how a body adopts it.
 - **Promotion.** Residual (`SON`) leaves are reviewed periodically; once roughly five similar entries accumulate, a dedicated leaf is normalized.
 - **Status revision.** A mechanism's `status` is the one deliberately mobile normative value. It changes only with a documented decision and date, and every theory-embedding grade derived from it is recomputed.
 - **Versioning.** Sharpening a label or scope note is a patch. A new leaf, mechanism node, facet value, or signature is a minor version. A change to the principles, the grammar, the class set, or the axis set is a major version.
+- **Consolidated editions.** Addenda may merge into the specification body at a minor release. This happened at 1.4.0, before any external body had ratified — the one moment such an edit costs nobody anything. Registries and identifiers stay append-only throughout; consolidation reorganizes prose, never data. The release lineage lives in the repository history and the manifests of prior releases.
 - **Private extensions.** Reserved local number ranges and a namespaced prefix are available; such extensions must not appear in interchange data without a namespace declaration.
 
 **One rule outranks the rest:** the standard must never grow a scalar credibility score. Regions of the lattice may be named; points may not be summed into a verdict.

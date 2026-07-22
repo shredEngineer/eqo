@@ -1,7 +1,7 @@
 # EQO/1 — Epistemic Quantization of Observables
-**Specification · Version 1.0.0 · English Edition (canonical wire format)**
+**Specification · Version 1.4.0 · English Edition (canonical wire format)**
 
-This specification is self-contained. It defines no migration path, no legacy resolution, and no compatibility layers: version 1.0.0 is the zero point of the standard. It is *constructed* as a standard — with conformance classes, normative language, reserved namespaces, and defined extension mechanisms; international standing arises through adoption, and the document is built precisely for that. **This English edition is canonical for all machine-readable tokens.** A language edition translates labels and scope notes only; tokens never translate (§5, §G.5).
+This specification is self-contained. It defines no migration path, no legacy resolution, and no compatibility layers: version 1.0.0 is the zero point of the standard, and the releases 1.1.0–1.4.0 — originally shipped as addenda — are consolidated into this body. The release lineage lives in the repository history and the manifests of prior releases; registries and identifiers remain append-only throughout (§G.1), because consolidation reorganizes prose, never data. It is *constructed* as a standard — with conformance classes, normative language, reserved namespaces, and defined extension mechanisms; international standing arises through adoption, and the document is built precisely for that. **This English edition is canonical for all machine-readable tokens.** A language edition translates labels and scope notes only; tokens never translate (§5, §G.5).
 
 ---
 
@@ -50,6 +50,8 @@ Five registries plus one computational module:
 
 Graph node types: `Entity` · `Observation` · `Source` · registry nodes. Edges: `Entity —hasObservation→ Observation —documentedIn→ Source`; `Observation —effectType→ P-leaf`; `Observation —[role]→ M-node`; `Observation —[reference]→ Observation` (`replicates` · `contradicts` · `confirms_per_source`).
 
+Corpus releases additionally carry three non-observation tiers — `candidates`, `doctrines`, and `narratives` (§8.2, §8.5) — which never pose as observation records.
+
 ## §5 Nomenclature and Syntax (normative)
 
 **Design principle "dumb keys, smart labels":** IDs are semantically poor (registry prefix, mnemonic, running number) so that labels can sharpen without keys breaking. IDs are **never** recycled and **never** reinterpreted.
@@ -78,9 +80,9 @@ S-pattern     ^S-[A-Z]{3}$
 **Further rules:**
 - Uniqueness holds **per registry** (S-ORG and M-ORG coexist; the prefix disambiguates).
 - All tokens are ASCII and IRI-safe; labels are multilingual (`prefLabel` per language). Canonical machine tokens are the English ones of this edition.
-- **Reserved class codes** for future modules: `ENV` (environment/geophysics: weather-modification and seismic claims) and `PSI` (mental-influence claims). Deliberately unpopulated in 1.0.0: secure the namespace, normalize content only when needed.
+- **Reserved class codes** for future modules: `ENV` (environment/geophysics: weather-modification and seismic claims) and `PSI` (mental-influence claims). Deliberately unpopulated: secure the namespace, normalize content only when needed.
 - **Private extensions** use NN 90–99 or the registry prefix `X-`; they **MUST NOT** appear in interchange data without a namespace declaration. (The instance corpus of this package demonstrates the mechanism with one private mechanism node, `X-HYD`.)
-- Every observation **MUST** carry `eqo_version` (here: `"1.0.0"`).
+- Every observation **MUST** carry `eqo_version` (here: `"1.4.0"`). A corpus release file that declares the version once — `eqo_version` or `targets_eqo_version` at the top of the file — satisfies this requirement for every record it contains; a record-level value, where present, overrides the file-level one.
 
 **Canonical wire tokens (English edition):**
 - M-edge roles: `claimed` · `discussed` · `excluded_per_source`
@@ -248,7 +250,7 @@ Every family lists its canonical instances (Principle 5); ⊕ marks orthodox anc
 
 *Instances:* Kozyrev's telescope-detector claims toward true star positions (`astronomical`) · Montagnier's DNA-signal experiments 2009/2011.
 
-**P-EMG-SON** — P-EMG-SON-01 Other electromagnetic observables
+**P-EMG-SON** — P-EMG-SON-01 Other electromagnetic observables *(currently holds charge-quantization anomalies — ex:ehrenhaft-subelectrons; a dedicated leaf is normalized when the promotion counter reaches ~5, per §G.2)*
 
 ## P-GRA
 
@@ -297,7 +299,7 @@ Every family lists its canonical instances (Principle 5); ⊕ marks orthodox anc
 - P-OPT-MED-02 Anomalies in the image content of recordings (device malfunction → P-INS-ELK-01)
 - P-OPT-MED-03 Mist/haze formation around apparatus
 
-*Instances:* The "orb" photography corpus (MED-02, `M-ART-CAM: discussed`) · mist reports at Hutchison and Schauberger setups (MED-03).
+*Instances:* The "orb" photography corpus (MED-02, `M-ART-CAM: discussed`) · mist reports at Hutchison and Schauberger setups (MED-03). *(MED-01 currently also holds light-speed-anisotropy claims; a dedicated leaf is normalized when the promotion counter reaches ~5, per §G.2.)*
 
 **P-OPT-SON** — P-OPT-SON-01 Other optical observables
 
@@ -376,16 +378,16 @@ Applies only when the instrument reading is the sole observable, or the instrume
 
 Explanatory models with `status` — a documentable, revisable statement about the state of research (Governance §G.3), **not** a verdict on individual observations. Status values: `established` · `fringe` (active, non-accepted research) · `heterodox` (outside accepted physics) · `historical` (superseded).
 
-**Established:** M-EHD Electrohydrodynamics/ion wind · M-KOR Corona/gas discharge · M-MSN Superconductivity (Meissner, flux pinning) · M-DIA Diamagnetic levitation · M-ACL Acoustic levitation · M-AER Aerodynamics/convection · M-TEL Thermoelectrics · M-PIE Piezo-/electrostriction · M-TRB Triboelectrics · M-IND Induction/eddy currents · M-MST Magnetostriction · M-JOU Joule/induction heating · M-CHX Exothermic chemistry · M-ELY Electrolysis · M-KAV Cavitation & sonoluminescence · M-TLM Tribo-/electroluminescence · M-RAD Radiometric forces (thermal transpiration) · M-LFR Leidenfrost · M-CAS Casimir *(real effect; extraction claims → M-ZPE)* · M-RES Mechanical resonance/structure-borne sound
+**Established:** M-EHD Electrohydrodynamics/ion wind · M-KOR Corona/gas discharge · M-MSN Superconductivity (Meissner, flux pinning) · M-DIA Diamagnetic levitation · M-ACL Acoustic levitation · M-AER Aerodynamics/convection · M-TEL Thermoelectrics · M-PIE Piezo-/electrostriction · M-TRB Triboelectrics · M-IND Induction/eddy currents · M-MST Magnetostriction · M-JOU Joule/induction heating · M-CHX Exothermic chemistry · M-ELY Electrolysis · M-KAV Cavitation & sonoluminescence · M-TLM Tribo-/electroluminescence · M-RAD Radiometric forces (thermal transpiration) · M-LFR Leidenfrost · M-CAS Casimir *(real effect; extraction claims → M-ZPE)* · M-RES Mechanical resonance/structure-borne sound · M-MCH Classical mechanics (statics/dynamics) *(instance: ex:leonardo-refutation-1494)* · M-REL Relativistic kinematics (special/general relativity) *(instance: ex:sagnac-1913)*
 
 **Established artifact classes** *(conventional explanatory offers; central for this corpus):*
-M-ART-PWR Power-measurement error (non-sinusoidal signals, power factor, RMS confusion) · M-ART-CAL Calorimetry/sensor placement · M-ART-STA Electrostatic force on balance/rig · M-ART-THK Thermal convection/draft *(instance: Einstein's account of the Reich ΔT, 1941)* · M-ART-VIB Vibration/footfall · M-ART-CAM Image/camera artifact, editing, staging · M-ART-AUF Suspension/threads/hidden drive *(instance: Keely findings 1899)* · M-ART-KON Sample contamination · M-ART-PER Perceptual/optical illusion *(instance: mystery-spot geometries)* · M-ART-STT Statistics/selection effects *(instance: Maddox analysis of the Benveniste counts)*
+M-ART-PWR Power-measurement error (non-sinusoidal signals, power factor, RMS confusion) · M-ART-CAL Calorimetry/sensor placement · M-ART-STA Electrostatic force on balance/rig · M-ART-THK Thermal convection/draft *(instance: Einstein's account of the Reich ΔT, 1941)* · M-ART-VIB Vibration/footfall · M-ART-CAM Image/camera artifact, editing, staging · M-ART-AUF Suspension/threads/hidden drive *(instance: Keely findings 1899)* · M-ART-KON Sample contamination · M-ART-PER Perceptual/optical illusion *(instance: mystery-spot geometries)* · M-ART-STT Statistics/selection effects *(instance: Maddox analysis of the Benveniste counts)* · M-ART-SUG Suggestion/expectancy — placebo, demand characteristics *(instance: ex:franklin-commission-1784)* · M-ART-IDE Ideomotor movement *(instance: ex:enright-reanalysis)* · M-ART-FAB Fabricated report — print/media hoax as documented finding *(instance: ex:kowsky-frost-1927)*
 
 **Fringe:** M-LEN LENR/cold fusion · M-EMD Resonant-cavity thrust · M-POD Rotating-superconductor effects · M-MEG Mach-effect propulsion · M-ALL Astronomically modulated gravity anomaly
 
-**Heterodox:** M-ZPE Vacuum-energy extraction · M-SCW Scalar waves · M-EGR Electrogravitics beyond EHD · M-MGM Permanent magnet as work source · M-RDT "Radiant energy" · M-WST Water structure/memory · M-KVN Biological transmutation · M-MDF Macroscopic mass-defect weight change · M-ORG Orgone
+**Heterodox:** M-ZPE Vacuum-energy extraction · M-SCW Scalar waves · M-EGR Electrogravitics beyond EHD · M-MGM Permanent magnet as work source · M-RDT "Radiant energy" · M-WST Water structure/memory · M-KVN Biological transmutation · M-MDF Macroscopic mass-defect weight change · M-ORG Orgone · M-TOR Torsion fields *(the distinct Akimov–Shipov lineage, not reducible to M-SCW; instance: ex:akimov-shipov-torsion)* · M-RDN Radionics *(instrument-mediated diagnosis/treatment-at-distance lineage; instance: the Abrams era)*
 
-**Historical:** M-AET Aether dynamics · M-KEE Sympathetic vibration
+**Historical:** M-AET Aether dynamics · M-KEE Sympathetic vibration · M-ODK Odic force *(Reichenbach's Od, ancestor of orgone-type claims; instance: ex:reichenbach-od)* · M-ANI Animal magnetism *(Mesmerism as claimed mechanism; instance: ex:mesmer-magnetism)*
 
 **Edge roles Observation → M (normative):** `claimed` (source offers mechanism as explanation) · `discussed` (named as candidate in sources/secondary literature) · `excluded_per_source` (source claims to have excluded it; what is indexed is the exclusion *claim*).
 
@@ -414,6 +416,8 @@ Six ordered axes. Raw fields (`sources[]`, `controls[]`, M edges) **MUST** be re
 
 **E-R Replication grade** — `R0` never attempted · `R1` single occurrence · `R2` repeated, same experimenter · `R3` independently attempted, not reproduced · `R4` independent, reproduction claimed · `R5` independent, reproduction documented (≥ D5). Replication attempts are **their own observations**, linked via `replicates`/`contradicts`.
 
+*Reading note — R grades documentation of replication activity, not replication success.* Compilers reliably stumble on one cell: `R3` (*independently attempted, not reproduced*) ranks above `R2` (*repeated, same experimenter*), which read as a credence scale looks inverted. The axis is behaving as designed: a claim that independent hands have actually attempted occupies a better-documented evidential situation than one only its originator ever repeated — the record now contains independent apparatus, independent competence, and an outcome, whichever way it went. The *direction* of that outcome is carried elsewhere: by the replication attempt's own record and its `contradicts`/`replicates`/`confirms_per_source` edge. Practical rule: assign R from the *documented activity*; let the *edges* say what the activity found. If assigning a grade feels like passing a verdict, the verdict part belongs in a relation, not in the coordinate.
+
 **E-C Control grade** (derived from `controls[]`; highest satisfied tier) — `C0` none documented · `C1` calibration · `C2` control/dummy run · `C3` independent second instrument or relevant environmental exclusion (vacuum test, EM shielding) · `C4` blinded protocol · `C5` full energy/mass balance.
 
 **E-P Provenance grade** — `P0` anonymous/unclear · `P1` claimant's own documentation · `P2` account by affiliated third parties/media · `P3` independent documentation · `P4` adversarial/skeptical examination documented. Multiple sources: maximum per observation; third-party examinations are usually their own linked observations.
@@ -422,7 +426,7 @@ Six ordered axes. Raw fields (`sources[]`, `controls[]`, M edges) **MUST** be re
 
 **Artifact classes are established mechanisms for this purpose.** `M-ART-*` nodes carry status `established` in Registry M, so an artifact edge derives T exactly as any other established edge does. A documented conventional account of a report — camera artifact, power-measurement error, suggestion — *is* an explanation, and a record carrying one is no longer open. Implementations that exempt artifact classes silently keep debunked reports classified as anomalies.
 
-**Orthodox anchors and null results.** A record whose observation *is* a null result or an orthodox demonstration has no anomalous phenomenon to explain and therefore no mechanism edge to derive from. Such a record carries `T4` by convention; deriving `T0` from the absent edge would classify the most securely established experiments as open anomalies. Mark these with ⊕ and state the convention in the record. T is **time-indexed**: status revisions in M change T; implementations **MUST** carry `t_computed_at`. *(Paradigm: Crookes radiometer — 1874 T0, after Reynolds/Maxwell T4.)*
+**Orthodox anchors and null results.** A record whose observation *is* a null result or an orthodox demonstration has no anomalous phenomenon to explain and therefore no mechanism edge to derive from. Such a record carries `T4` by convention; deriving `T0` from the absent edge would classify the most securely established experiments as open anomalies. Mark these with ⊕ and state the convention in the record. T is **time-indexed**: status revisions in M change T; implementations **MUST** carry `t_computed_at`. A corpus release that recomputes T for all records at release time MAY record this once, in the release provenance note, rather than per record. *(Paradigm: Crookes radiometer — 1874 T0, after Reynolds/Maxwell T4.)*
 
 **E-Q Quantification grade** — `Q0` qualitative · `Q1` semi-quantitative · `Q2` quantitative · `Q3` quantitative with uncertainty.
 
@@ -452,6 +456,8 @@ Signatures are named co-occurrence patterns over P leaves, K facets, and M edges
 | S-MEM | Water memory | CHM-PHS-02 ∧ (BIO-WRK ∨ EMG-KOR) | Benveniste 1988 + Maddox check; Montagnier 2009/2011; Grander; Emoto |
 | S-ANT | Field/inertial propulsion | MEC-KIN-01/07 ∧ `K-VAC` recorded | EmDrive: Shawyer, Eagleworks 2016, TU Dresden null 2021; Woodward MEGA; Dean Drive |
 | S-GYR | Gyroscopic | MEC-KIN-04 ∨ GRA-GEW-04 ∨ GRA-INR-02 | Laithwaite lecture 1974 (resolved, T4); Hayasaka–Takeuchi + Faller null; DePalma |
+| S-AET | Aether drift | OPT-MED-01 ∧ absolute-motion claim (`K-MOD: orientation/astronomical`) | Michelson–Morley (⊕ null); Miller; Marinov; Sagnac (migrated) |
+| S-RDN | Radionics | (INS ∨ BIO-WRK) ∧ M-RDN edge | Abrams; Drown; de la Warr; Hieronymus |
 | S-OFN | Open | Observation without edge to `status: established` (T0) | *derived* — the operational anomaly definition (Principle 3) |
 | S-DEK | Orthodox-covered | T4 | *derived* — ⊕ radiometer, Meissner demos, lifters with EHD documentation |
 
@@ -489,6 +495,8 @@ Observations of the same Ε cell are **epistemically equivalent by construction*
 | EP-5 *Orthodox-covered* | T4 | Radiometer today; Meissner; EHD lifters |
 | EP-0 *Unquantized* | ≥ 3 axes `x` | new intake before assessment |
 
+The reference regions are informal and may overlap; assignment within them is judgment. Two boundaries, however, are exact, and an implementation MAY enforce them mechanically: `EP-0` applies only to records with three or more axes at `x` (an assessed record is never "unquantized"), and `EP-5` requires `T4`. A record violating either carries a wrong assignment, not a defensible one.
+
 ## §Q.5 Worked Example (Core Corpus, Quantized)
 
 | Observation | E-signature | Macro-cell (D,R,C,P,T,Q) | Type |
@@ -518,10 +526,12 @@ Readable at a glance: Hutchison and Steorn cluster in the same Ε region despite
 
 # Part VIII — Data Model and Serialization
 
+## §8.1 Observation record
+
 ```yaml
 observation:
   id: OBS-1992-PODK-0001
-  eqo_version: "1.0.0"
+  eqo_version: "1.4.0"
   entity: DEV-YBCO-ROTOR-TAMPERE
   effect_types: [P-GRA-GEW-02, P-GRA-GEW-03]
   mechanisms:
@@ -531,12 +541,63 @@ observation:
   epistemics:
     raw: {sources: [SRC-PHYSICA-C-1992], controls: [calibration, control_run]}
     axes: "E1:D7R3C2P1T2Q3"
-    t_computed_at: 1.0.0-intake
+    t_computed_at: 1.4.0-intake
   patent_flag: false
   references: [{ref: OBS-1997-NASA-MSFC-0001, type: replicates}]
 ```
 
 SKOS/JSON-LD: per registry node `skos:prefLabel` (multilingual), `skos:scopeNote`, `skos:broader` (leaf → family → class); instance lists as `skos:example`; sources via PROV-O, measured values via QUDT, persons/devices optionally via Wikidata.
+
+## §8.2 Compilation metadata and the candidates tier
+
+Normative for corpus releases. A corpus record distinguishes two things that are not the same:
+
+- **E axes (D, R, C, P, T, Q)** — how well *the world* documented the case. `D1 P1 R0 T0` is a first-class record, not a defective one. Obscurity is never an exclusion criterion.
+- **`compilation_confidence: high | medium | low`** — how reliable *the compiler's recall* of name, principals, era, and phenomenology is. This is compiler metadata, not case evidence.
+
+Threshold for an `instances` record: name + principal(s) + rough decade + phenomenology. Everything beyond that — exact years, patent numbers, citations, measured values — appears only at high recall confidence; otherwise `x` or omission. Reconstructed citations and plausibly guessed numbers are prohibited.
+
+**The `candidates` tier** holds names and leads known to the compiler only as recurring mentions in secondary compilations. Each entry carries what is recalled plus a `verify` note. Candidates are referenceable without posing as validated records — maximal inclusion without diluting the corpus.
+
+## §8.3 Record kinds
+
+Corpus mining exposed a latent ambiguity: Bhaskara's wheel is a *description*, Redheffer's wheel was a *demonstration*, Hutchison footage is an *observation*, Leonardo's notebook pages are an *analysis*. An optional enum, default `observation`, records the distinction:
+
+`record_kind: observation | demonstration_claim | design_description | analysis`
+
+Coverage is intentionally sparse: compilers set the field only where the distinction carries information (a design that was never built, a demonstration without instruments, an analysis of others' claims). Absence of the field is the default, not an omission.
+
+## §8.4 Retractions
+
+A retraction is a documented, dated event of a distinctive class: it is issued by the *publication channel*, not by an examining party, and self-retraction by an author list has no natural second record to live in. It therefore gets a first-class, machine-readable slot instead of living invisibly in `note` prose:
+
+```yaml
+retractions:
+  - {date: "2023-11-07", ref: "Retraction Note, Nature (7 Nov 2023), doi:10.1038/s41586-023-06774-2"}
+```
+
+The field is optional; each entry carries the date of the retraction notice and a citation of the notice itself, which SHOULD also appear in `refs`. The retraction's stated grounds and issuing party go verbatim-faithful into `note` — the field makes the event machine-readable, the prose keeps it faithful. A retraction does not change the E axes by itself (the record still documents what it documents), and no derived signature is defined over the field: the coordinate reports the evidential situation, the field reports the channel's act.
+
+## §8.5 Doctrine and narrative tiers
+
+The mandate is unified referenceability: theory and practice, documented or not, hoaxes and conspiracy narratives included. The observable-primacy principle (Principle 1) stays untouched — theories and narratives are not observations and **MUST NOT** pose as observation records. They are referenceable as their own object types:
+
+- **`doctrines`** — theory-first corpora (a body of claims about how the world works, without or beyond a bench-observation corpus). Fields: `id (doc:*)`, `label`, `principals`, `years`, `summary`, `linked_instances` (observation records that cite the doctrine, if any), `compilation_confidence`, `note`.
+- **`narratives`** — lore and conspiracy complexes. Fields: `id (nar:*)`, `label`, `emergence` (when the *narrative* first appears), `narrative_provenance` (its documentation trail — a narrative is itself a documented textual phenomenon with D/P-like provenance), **`factual_kernel`** (what is independently documented), **`lore_layer`** (what the narrative adds), `linked_instances`, `compilation_confidence`.
+
+The kernel/lore split is the epistemic core of this tier: it lets a community reference a conspiracy theory precisely — affirming its existence and its documented seed while cleanly delimiting the undocumented growth. Indexing a narrative is not endorsing it, exactly as indexing an observation was never a truth verdict.
+
+**Hoaxes need no tier of their own:** a documented hoax is an observation record whose resolution edge is `M-ART-FAB` or `M-ART-AUF` `claimed` — the full pattern is a claim record, an exposure record, and a `contradicts` relation between them.
+
+## §8.6 The vocabulary artifact
+
+The standard ships `vocabulary.json`: every registry and enumeration — phenomenon classes and leaves, mechanism nodes with status, context facets and their value tokens, the six axes with grade labels, epistemotypes with their regions, signatures, edge roles, relation types, record kinds, compilation-confidence levels, and the specification anchors where each is defined — in one structured file, validated by `schema/vocabulary.schema.json`.
+
+The artifact also carries the mechanically evaluable rules as data, under `derivation_rules`: the theory-embedding derivation table (edge status × role → grade, aggregated by maximum, with the no-edge grade and the orthodox-anchor convention), the two derived signatures (`S-OFN` at T0, `S-DEK` at T4), and the two exact epistemotype boundaries of §Q.4. A validator interprets this table instead of re-transcribing the prose into code — the prose in Part V and §Q.4 remains the human-readable authority the table must match. Signature *compositions* (Part VI) stay prose: they are tagged by judgment, not derived, and encoding them would buy an expression language for nothing.
+
+The rule this creates: **a consumer reads the artifact, never the prose.** A viewer, validator, or build pipeline that needs the vocabulary consumes `vocabulary.json`; parsing this specification's text is not a supported interface, because prose changes on a patch while the artifact carries the contract. Where artifact and prose disagree, that is a defect in this repository — CI cross-checks the artifact against the schemas on every push, and the specification remains the human-readable authority the artifact is generated to match.
+
+Adopters pin the artifact exactly as they pin the standard: by version and checksum. A consumer working from a vendored copy records the version it was taken at.
 
 ---
 
@@ -550,4 +611,4 @@ SKOS/JSON-LD: per registry node `skos:prefLabel` (multilingual), `skos:scopeNote
 
 ---
 
-*EQO/1, version 1.0.0, English edition. One vocabulary for orthodox and heterodox effects; anomaly as a graph property; evidential situation as a coordinate. Self-contained, extensible, ready for adoption.*
+*EQO/1, version 1.4.0, English edition. One vocabulary for orthodox and heterodox effects; anomaly as a graph property; evidential situation as a coordinate. Self-contained, extensible, ready for adoption.*

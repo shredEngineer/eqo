@@ -18,17 +18,16 @@ The standard **must not** be extended with a scalar credibility score. Vectors, 
 
 | Path | What it is |
 |------|-----------|
-| `SPECIFICATION.md` | The specification — principles, the five registries, the axis definitions, the quantization module, the data model, governance |
-| `ADDENDUM-A.md` | Compilation metadata, the candidates tier, seven mechanism nodes, two signature patterns |
-| `ADDENDUM-B.md` | The doctrine and narrative tiers (with the factual-kernel / lore-layer split), `record_kind`, attestation semantics |
-| `ADDENDUM-C.md` | The machine-readable vocabulary artifact, the M-REL node, conformance clarifications |
+| `SPECIFICATION.md` | The specification — principles, the five registries, the axis definitions, the quantization module, the data model with the corpus tiers and the retraction field, governance and extension |
 | `vocabulary.json` | Every registry and enumeration as one structured file — the interface for viewers, validators and build pipelines |
 | `schema/` | JSON Schema (draft 2020-12) for observation records, for a corpus file, and for the vocabulary artifact |
 | `GOVERNANCE.md` | How the registries grow, and how an adopting body ratifies |
 
+Releases 1.1.0–1.3.0 shipped as addenda; version 1.4.0 consolidated them into the specification body. The release lineage lives in the repository history.
+
 **This repository is the standard, not a dataset.** It defines how to classify and grade; it ships no corpus. That separation is deliberate — a standard carrying one particular body of records reads as that body's vehicle rather than as an instrument anyone can adopt.
 
-A reference corpus built to this standard, together with a viewer for it, lives at [exotic-science-timeline](https://github.com/shredEngineer/exotic-science-timeline) — 189 identifiers across four append-only releases spanning 1150 to the present, published at [timeline.advanced-rediscovery.com](https://timeline.advanced-rediscovery.com/).
+A reference corpus built to this standard, together with a viewer for it, lives at [exotic-science-timeline](https://github.com/shredEngineer/exotic-science-timeline) — 207 identifiers across seven append-only releases spanning 1150 to the present, published at [timeline.advanced-rediscovery.com](https://timeline.advanced-rediscovery.com/).
 
 ## What attestation covers
 
@@ -50,9 +49,9 @@ Registries are **append-only**; identifiers are never recycled and never reinter
 
 Corrections to individual records are normal governance operations, not blockers. See `GOVERNANCE.md`.
 
-## Licence
+## License
 
-Specification, addenda, and schemas: **CC BY 4.0** (`LICENSE`). Code — any tooling and CI: **Apache-2.0** (`LICENSE-CODE`), which carries an explicit patent grant.
+Specification and schemas: **CC BY 4.0** (`LICENSE`). Code — any tooling and CI: **Apache-2.0** (`LICENSE-CODE`), which carries an explicit patent grant.
 
 Attribute as: **Dr.-Ing. Paul Wilhelm, *EQO — Epistemic Quantization of Observables*, CC BY 4.0.** A single collective credit satisfies the attribution requirement when this specification is bundled with other material.
 
