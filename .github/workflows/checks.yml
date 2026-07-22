@@ -28,6 +28,64 @@ jobs:
           sys.exit(0 if ok else 1)
           PY
 
+      - name: Vocabulary artifact validates and matches the schemas
+        run: |
+          pip install --quiet jsonschema
+          python3 - <<'PY'
+          import json, pathlib, sys, jsonschema
+          vocab = json.loads(pathlib.Path("vocabulary.json").read_text())
+          vschema = json.loads(pathlib.Path("schema/vocabulary.schema.json").read_text())
+          obs = json.loads(pathlib.Path("schema/observation.schema.json").read_text())
+          bad = []
+
+          errs = list(jsonschema.Draft202012Validator(vschema).iter_errors(vocab))
+          for e in errs: bad.append(f"vocabulary.json invalid: {list(e.path)}: {e.message[:120]}")
+
+          # The two machine artifacts must agree — a consumer must never learn an
+          # enum from one file that the other rejects.
+          op = obs["properties"]
+          def diff(name, a, b):
+              a, b = set(a), set(b)
+              if a != b: bad.append(f"{name} drift: vocabulary {sorted(a-b)} / observation.schema {sorted(b-a)}")
+          for k, spec in vocab["context_facets"].items():
+              ctx = op["context"]["properties"][k]
+              enum = ctx["items"]["enum"] if "items" in ctx else ctx["enum"]
+              diff(f"K facet '{k}'", spec["values"], enum)
+          diff("edge roles", vocab["edge_roles"], op["mechanisms"]["items"]["properties"]["role"]["enum"])
+          diff("relation types", vocab["relation_types"], op["relations"]["items"]["properties"]["type"]["enum"])
+          diff("epistemotypes", vocab["epistemotypes"], op["epistemotype"]["enum"])
+          diff("record kinds", vocab["record_kinds"], op["record_kind"]["enum"])
+          diff("compilation confidence", vocab["compilation_confidence"], op["compilation_confidence"]["enum"])
+
+          # Signature regex agreement and axis ranges from the E-signature pattern
+          import re
+          pat = op["e_signature"]["pattern"]
+          for ax in "DRCPTQ":
+              m = re.search(ax + r"\(\[0-(\d)\]", pat)
+              if m and int(m.group(1)) != vocab["axes"][ax]["max"]:
+                  bad.append(f"axis {ax}: vocabulary max {vocab['axes'][ax]['max']} vs signature pattern 0-{m.group(1)}")
+
+          # Every spec anchor must resolve to a real file and a real heading slug
+          for key, ref in vocab["spec_anchors"].items():
+              fn, _, anchor = ref.partition("#")
+              p = pathlib.Path(fn)
+              if not p.exists():
+                  bad.append(f"anchor {key}: file {fn} does not exist"); continue
+              slugs = set()
+              for line in p.read_text().splitlines():
+                  if line.startswith("#"):
+                      t = line.lstrip("#").strip().lower()
+                      t = re.sub(r"[^\w\s-]", "", t).replace(" ", "-")
+                      slugs.add(t)
+              if anchor not in slugs:
+                  bad.append(f"anchor {key}: #{anchor} not found in {fn}")
+
+          for b in bad: print(b, file=sys.stderr)
+          print(f"vocabulary: {len(vocab['phenomena']['leaves'])} leaves, {len(vocab['mechanisms'])} mechanism nodes, "
+                f"{len(vocab['signatures'])} signatures — {'FAIL' if bad else 'consistent with the schemas'}")
+          sys.exit(1 if bad else 0)
+          PY
+
       - name: Every shipped file is listed in the manifest
         run: |
           python3 - <<'PY'

@@ -1,5 +1,5 @@
 # EQO/1 Addendum A — Compilation Metadata & Registry Additions (Release B)
-**Status: v1.1.0-draft · minor version per G.4 (new nodes, new patterns, one new record-level field) · pending community ratification**
+**Status: v1.1.0 · minor version per G.4 (new nodes, new patterns, one new record-level field)**
 
 ## A.1 Compilation metadata (normative for corpus releases)
 
@@ -39,4 +39,4 @@ Threshold for an `instances` record: name + principal(s) + rough decade + phenom
 
 ## A.4 Version note
 
-Base corpus (87 records, v1.0.0) is untouched — append-only. Release B ships as a separate file; the merged package targets **v1.1.0-draft**. Ratification, corrections, and rejections of individual records are normal G.1 operations by the adopting community.
+The base corpus (87 records) is untouched — append-only; Release B ships as a separate file in the corpus's own repository (the standard ships no data). The registry additions above target **v1.1.0**. Ratification, corrections, and rejections of individual records are normal G.1 operations by the adopting community.

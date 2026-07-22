@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eqo:1/vocabulary.schema.json",
+  "title": "EQO/1 Vocabulary Export",
+  "description": "Validation schema for vocabulary.json — the machine-readable export of the standard's registries and enumerations (Addendum C). Consumers read this artifact instead of parsing the specification prose.",
+  "type": "object",
+  "required": ["eqo_version", "canonical_edition", "spec_anchors", "phenomena", "mechanisms",
+               "edge_roles", "relation_types", "context_facets", "axes", "unknown_grade",
+               "epistemotypes", "signatures", "record_kinds", "tiers", "compilation_confidence"],
+  "properties": {
+    "eqo_version": {"type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$"},
+    "canonical_edition": {"const": "en"},
+    "artifact": {"type": "string"},
+    "sources": {"type": "array", "items": {"type": "string"}},
+    "spec_anchors": {
+      "type": "object",
+      "required": ["P", "M", "K", "E", "S", "EP", "REL", "ROLE", "KIND"],
+      "additionalProperties": {"type": "string", "pattern": "^[A-Z-]+[A-Za-z0-9-]*\\.md#"}
+    },
+    "phenomena": {
+      "type": "object",
+      "required": ["classes", "leaves"],
+      "properties": {
+        "classes": {
+          "type": "object",
+          "propertyNames": {"pattern": "^[A-Z]{3}$"},
+          "additionalProperties": {
+            "type": "object",
+            "required": ["label", "summary"],
+            "properties": {"label": {"type": "string"}, "summary": {"type": "string"}}
+          }
+        },
+        "reserved_classes": {
+          "type": "object",
+          "propertyNames": {"pattern": "^[A-Z]{3}$"},
+          "additionalProperties": {"type": "string"}
+        },
+        "leaves": {
+          "type": "object",
+          "propertyNames": {"pattern": "^P-[A-Z]{3}-[A-Z]{3}-[0-9]{2}$"},
+          "additionalProperties": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "mechanisms": {
+      "type": "object",
+      "propertyNames": {"pattern": "^M-(ART-)?[A-Z]{3}$"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "status"],
+        "properties": {
+          "label": {"type": "string", "minLength": 1},
+          "status": {"enum": ["established", "fringe", "heterodox", "historical"]},
+          "artifact_class": {"type": "boolean"}
+        }
+      }
+    },
+    "mechanism_statuses": {
+      "type": "object",
+      "propertyNames": {"enum": ["established", "fringe", "heterodox", "historical"]},
+      "additionalProperties": {"type": "string"}
+    },
+    "edge_roles": {
+      "type": "object",
+      "required": ["claimed", "discussed", "excluded_per_source"],
+      "additionalProperties": {"type": "string"}
+    },
+    "relation_types": {
+      "type": "object",
+      "required": ["replicates", "contradicts", "confirms_per_source"],
+      "additionalProperties": {"type": "string"}
+    },
+    "context_facets": {
+      "type": "object",
+      "required": ["inp", "med", "vac", "scl", "per", "mod"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["registry_key", "label", "multi", "values"],
+        "properties": {
+          "registry_key": {"type": "string", "pattern": "^K-[A-Z]{3}$"},
+          "label": {"type": "string"},
+          "multi": {"type": "boolean"},
+          "values": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}}
+        }
+      }
+    },
+    "axes": {
+      "type": "object",
+      "required": ["D", "R", "C", "P", "T", "Q"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name", "max", "description", "grades"],
+        "properties": {
+          "name": {"type": "string"},
+          "max": {"type": "integer", "minimum": 1},
+          "description": {"type": "string"},
+          "grades": {
+            "type": "object",
+            "propertyNames": {"pattern": "^[0-9]$"},
+            "additionalProperties": {"type": "string"}
+          }
+        }
+      }
+    },
+    "unknown_grade": {
+      "type": "object",
+      "required": ["token", "label", "semantics"],
+      "properties": {"token": {"const": "x"}}
+    },
+    "epistemotypes": {
+      "type": "object",
+      "required": ["EP-0", "EP-1", "EP-2", "EP-3", "EP-4", "EP-5"],
+      "propertyNames": {"pattern": "^EP-[0-5]$"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "region", "description"],
+        "properties": {"label": {"type": "string"}, "region": {"type": "string"}, "description": {"type": "string"}}
+      }
+    },
+    "signatures": {
+      "type": "object",
+      "propertyNames": {"pattern": "^S-[A-Z]{3}$"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "definition"],
+        "properties": {"label": {"type": "string"}, "definition": {"type": "string"}}
+      }
+    },
+    "record_kinds": {
+      "type": "object",
+      "required": ["observation", "demonstration_claim", "design_description", "analysis"],
+      "additionalProperties": {"type": "string"}
+    },
+    "derivation_rules": {
+      "type": "object",
+      "required": ["theory_embedding", "derived_signatures", "epistemotype_constraints"],
+      "properties": {
+        "theory_embedding": {
+          "type": "object",
+          "required": ["axis", "ignore_roles", "grade_by_edge", "aggregate", "no_edge_grade"],
+          "properties": {
+            "axis": {"const": "T"},
+            "ignore_roles": {"type": "array", "items": {"type": "string"}},
+            "grade_by_edge": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["status", "grade"],
+                "properties": {
+                  "status": {"enum": ["established", "fringe", "heterodox", "historical"]},
+                  "role": {"type": "string"},
+                  "grade": {"type": "integer", "minimum": 0, "maximum": 4}
+                }
+              }
+            },
+            "aggregate": {"const": "max"},
+            "no_edge_grade": {"type": "integer"},
+            "no_edge_convention": {
+              "type": "object",
+              "required": ["grade", "note"]
+            }
+          }
+        },
+        "derived_signatures": {
+          "type": "object",
+          "propertyNames": {"pattern": "^S-[A-Z]{3}$"},
+          "additionalProperties": {
+            "type": "object",
+            "required": ["axis", "equals"],
+            "properties": {"axis": {"type": "string"}, "equals": {"type": "integer"}}
+          }
+        },
+        "epistemotype_constraints": {
+          "type": "object",
+          "propertyNames": {"pattern": "^EP-[0-5]$"},
+          "additionalProperties": {"type": "object"}
+        }
+      }
+    },
+    "tiers": {
+      "type": "object",
+      "required": ["doctrine", "narrative"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "summary"]
+      }
+    },
+    "compilation_confidence": {
+      "type": "object",
+      "required": ["high", "medium", "low"],
+      "additionalProperties": {"type": "string"}
+    }
+  }
+}

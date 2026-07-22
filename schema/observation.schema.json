@@ -24,7 +24,8 @@
     },
     "eqo_version": {
       "type": "string",
-      "pattern": "^1\\.[01]\\.\\d+(-draft)?$"
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$",
+      "description": "May be declared once at corpus-file level and inherited by every record (Addendum C.3); a record-level value overrides the file-level one."
     },
     "entity": {
       "type": "string"

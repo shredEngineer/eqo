@@ -31,7 +31,7 @@ The key words **MUST**, **MUST NOT**, **SHALL**, **SHOULD**, and **MAY** are to 
 1. **Primacy of the observable.** What is indexed is the documented observation as its own graph node — never the claimed mechanism, never the entity as a whole.
 2. **Neutral labels.** P labels describe phenomena. Admissible baselines ("in excess of the accounted input", "without documented source") are statements about the documentation, not verdicts of truth.
 3. **Unification.** Orthodox and heterodox cases use the same leaves. *Anomaly is not a property of a label but a property of the graph: the absence of a documented edge to an established mechanism* (operationally: axis T = 0, signature S-OFN).
-4. **Status truth without claim judgment.** The research status of a *mechanism* (established/fringe/heterodox/historical) is documentable fact and lives in Registry M. The standard passes no judgment on individual *observations* — not even implicitly: EQO/1 **MUST NOT** be extended with a normative scalar "credibility score" (§Q.5).
+4. **Status truth without claim judgment.** The research status of a *mechanism* (established/fringe/heterodox/historical) is documentable fact and lives in Registry M. The standard passes no judgment on individual *observations* — not even implicitly: EQO/1 **MUST NOT** be extended with a normative scalar "credibility score" (§Q.3).
 5. **Exemplar principle.** Every family and every signature **SHALL** carry canonical prototype instances. Controlled vocabularies stabilize inter-tagger reliability through exemplars, not definitions alone; the instances in Part II and VI are normative registry content, not illustration.
 6. **Closure guarantee.** Every class carries the residual family `SON`; every facet and every E axis admits `x` (unknown). Every observation is fully recordable. *Unknown is never the lowest grade* (§E.4).
 
@@ -97,7 +97,7 @@ S-pattern     ^S-[A-Z]{3}$
 
 10 classes: **MEC** Mechanical/Kinematic · **THM** Thermal · **NUC** Nuclear/Material-analytic · **EMG** Electromagnetic · **GRA** Gravitational/Inertial (measurements) · **OPT** Optical/Radiative · **ACU** Acoustic/Vibrational · **CHM** Chemical/Phase · **BIO** Biological · **INS** Instrumental (reading as sole observable).
 
-Every family lists its canonical instances (Principle 5); ⊕ marks orthodox anchors. The consolidated, machine-readable instance corpus ships alongside this document (`corpus/`).
+Every family lists its canonical instances (Principle 5); ⊕ marks orthodox anchors. A consolidated, machine-readable reference corpus built to this standard is published in its own repository (see README) — the standard itself ships no data.
 
 ## P-MEC
 

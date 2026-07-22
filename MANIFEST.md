@@ -12,10 +12,13 @@ CI verifies on every push that the schemas parse and that this manifest lists ev
 
 | File | SHA-256 |
 |------|---------|
-| `ADDENDUM-A.md` | `c6051457ad25df2300a1ecaf326f5770d7fc68eea8f6f043fd8ef964d052cd53` |
-| `ADDENDUM-B.md` | `e941002c2ff39909f67ad82c62ff7f788181c9d45ccc311d206d768de871fa63` |
+| `ADDENDUM-A.md` | `b53a4c201e4ebe2f79550c020d1e9da90feac28293a5049d723aa96b8f08937c` |
+| `ADDENDUM-B.md` | `4aa7e3b3509a3ba93274f1efb35683558d33ebe1d81c718f6d0a0a1c51b78766` |
+| `ADDENDUM-C.md` | `4baf6fb90220a13f8abb38ba897764dd3133a9deedf1101d9af2708335fc6c3f` |
 | `GOVERNANCE.md` | `99a6d8bab4aee2e163d3380116fee821a1f281b4ae91ccb78f94f08b76eeaf9b` |
-| `README.md` | `7e7e31c76e49fc187f35ed9c3e0d1139802ad331c94cf6917650a569b1fa87a2` |
+| `README.md` | `1ac355cc8d66e49aa4c54d84a51c8b803cbdab2b9fe816273786f69971d23a07` |
+| `SPECIFICATION.md` | `5ac9b23042db29ceca400baeb841dc8f77df987e63047be8966945e7bd78a8ab` |
 | `schema/corpus.schema.json` | `dd453230c09b389f27b1a0c6063ad1e5f5f5b0b832417b6fe3c4eb22e1e1af82` |
-| `schema/observation.schema.json` | `c026b1efe8e0d1aa6a67f778e7a8b3ad9524c59f6c405782304fd8f901a23f7c` |
-| `SPECIFICATION.md` | `4fc8d3eca337461ceda7036b5164db39c96d182dc85cde76a37235a078f0bdce` |
+| `schema/observation.schema.json` | `5bd9bdbf7895ed494296f62722cec506c00c1bcd49d2eeaa031f03ba894cd5b7` |
+| `schema/vocabulary.schema.json` | `78708b3a00d14890f7e8661e024f8c551fde3076e00f8cf5bb67836f5af6dd23` |
+| `vocabulary.json` | `a6698c55f9617eab7e3d69aaf5f292c23d8e1498d6c62c42196211267c8c0e4d` |

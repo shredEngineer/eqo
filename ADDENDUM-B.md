@@ -28,4 +28,4 @@ Mining the medieval layer exposed a latent ambiguity: Bhaskara's wheel is a *des
 
 What this release **certifies** (technical attestation by the compiler): syntax validity of every file, grammar conformance of every ID/token/signature, closure of all relation and link references, append-only integrity against v1.0.0, SHA-256 checksums (MANIFEST).
 
-What it **does not and cannot certify**: the truth of any claim, the verification of citations against primary sources, or community adoption. **Ratification is the community's act** — RATIFICATION.md provides the process and ballot. "Final" in an append-only standard means: this release line is closed and signed; everything after it belongs to the adopting community.
+What it **does not and cannot certify**: the truth of any claim, the verification of citations against primary sources, or community adoption. **Ratification is the community's act** — GOVERNANCE.md provides the process and ballot. "Final" in an append-only standard means: this release line is closed and signed; everything after it belongs to the adopting community.

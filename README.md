@@ -21,7 +21,9 @@ The standard **must not** be extended with a scalar credibility score. Vectors, 
 | `SPECIFICATION.md` | The specification — principles, the five registries, the axis definitions, the quantization module, the data model, governance |
 | `ADDENDUM-A.md` | Compilation metadata, the candidates tier, seven mechanism nodes, two signature patterns |
 | `ADDENDUM-B.md` | The doctrine and narrative tiers (with the factual-kernel / lore-layer split), `record_kind`, attestation semantics |
-| `schema/` | JSON Schema (draft 2020-12) for observation records and for a corpus file |
+| `ADDENDUM-C.md` | The machine-readable vocabulary artifact, the M-REL node, conformance clarifications |
+| `vocabulary.json` | Every registry and enumeration as one structured file — the interface for viewers, validators and build pipelines |
+| `schema/` | JSON Schema (draft 2020-12) for observation records, for a corpus file, and for the vocabulary artifact |
 | `GOVERNANCE.md` | How the registries grow, and how an adopting body ratifies |
 
 **This repository is the standard, not a dataset.** It defines how to classify and grade; it ships no corpus. That separation is deliberate — a standard carrying one particular body of records reads as that body's vehicle rather than as an instrument anyone can adopt.
@@ -36,7 +38,9 @@ A corpus built to this standard carries its own provenance statement; this repos
 
 ## Using it
 
-Read `SPECIFICATION.md` first — the registries and the axis semantics are short, and the worked example at the end of the quantization module shows the payoff: one can ask *which phenomena share the same evidential situation* and *which evidential situations share the same phenomenon*, independently.
+Read `SPECIFICATION.md` first — the registries and the axis semantics are short, and the worked example in the quantization module shows the payoff: one can ask *which phenomena share the same evidential situation* and *which evidential situations share the same phenomenon*, independently.
+
+Building software against the standard? Consume `vocabulary.json` — it carries every registry and enumeration in one validated file, with anchors back to where each is defined. Parsing the specification prose is not a supported interface.
 
 Two semantics are easy to get wrong and worth stating twice. **Unknown is never the lowest grade** — an unassessed axis is missing data, not a zero, and distance computations drop it pairwise rather than treating it as a minimum. **Theory embedding is time-indexed** — it derives from a revisable mechanism status, so an assignment records when it was computed and is recomputed when that status moves. The radiometer is the canonical case: an open anomaly in 1874, fully explained today, the same record migrating across the lattice.
 
