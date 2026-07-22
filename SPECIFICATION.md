@@ -1,7 +1,7 @@
 # EQO/1 — Epistemic Quantization of Observables
 **Specification · Version 1.0.0 · English Edition (canonical wire format)**
 
-This specification is self-contained. It defines no migration path, no legacy resolution, and no compatibility layers: version 1.0.0 is the zero point of the standard. It is *constructed* as a standard — with conformance classes, normative language, reserved namespaces, and defined extension mechanisms; international standing arises through adoption, and the document is built precisely for that. The German edition (included in this package) is a language edition of identical structure; **this English edition is canonical for all machine-readable tokens.**
+This specification is self-contained. It defines no migration path, no legacy resolution, and no compatibility layers: version 1.0.0 is the zero point of the standard. It is *constructed* as a standard — with conformance classes, normative language, reserved namespaces, and defined extension mechanisms; international standing arises through adoption, and the document is built precisely for that. **This English edition is canonical for all machine-readable tokens.** A language edition translates labels and scope notes only; tokens never translate (§5, §G.5).
 
 ---
 

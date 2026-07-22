@@ -17,7 +17,7 @@ CI verifies on every push that the schemas parse and that this manifest lists ev
 | `ADDENDUM-C.md` | `4baf6fb90220a13f8abb38ba897764dd3133a9deedf1101d9af2708335fc6c3f` |
 | `GOVERNANCE.md` | `99a6d8bab4aee2e163d3380116fee821a1f281b4ae91ccb78f94f08b76eeaf9b` |
 | `README.md` | `1ac355cc8d66e49aa4c54d84a51c8b803cbdab2b9fe816273786f69971d23a07` |
-| `SPECIFICATION.md` | `5ac9b23042db29ceca400baeb841dc8f77df987e63047be8966945e7bd78a8ab` |
+| `SPECIFICATION.md` | `6b5e9ee0feb5831e376330b1f320d0d3f12e65ff5816bc0058c9d2e9bd09d1a8` |
 | `schema/corpus.schema.json` | `dd453230c09b389f27b1a0c6063ad1e5f5f5b0b832417b6fe3c4eb22e1e1af82` |
 | `schema/observation.schema.json` | `5bd9bdbf7895ed494296f62722cec506c00c1bcd49d2eeaa031f03ba894cd5b7` |
 | `schema/vocabulary.schema.json` | `78708b3a00d14890f7e8661e024f8c551fde3076e00f8cf5bb67836f5af6dd23` |
